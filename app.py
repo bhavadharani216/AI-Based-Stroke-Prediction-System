@@ -12,9 +12,6 @@ section[data-testid="stSidebar"] h1,
 section[data-testid="stSidebar"] h2,
 section[data-testid="stSidebar"] h3 { color: #1e40af !important; }
 
-section[data-testid="stSidebar"] strong { color: red !important; }
-section[data-testid="stSidebar"] li { color: red !important; }
-
 button[kind="primary"] {
     background-color: violet !important;
     color: black !important;
@@ -23,6 +20,12 @@ button[kind="primary"] {
 button[kind="primary"]:hover {
     background-color: #8b5cf6 !important;
     color: white !important;
+}
+
+/* Green bullets in sidebar */
+section[data-testid="stSidebar"] li {
+    color: green !important;
+    font-weight: 600;
 }
 </style>
 """, unsafe_allow_html=True)
@@ -72,8 +75,15 @@ with st.sidebar:
     """)
     st.markdown("---")
     st.subheader("Dataset Stats")
-    st.write("Total Records:", df.shape[0])
-    st.write("Stroke Cases:", df['stroke'].sum())
+
+    st.markdown(
+        f"<p style='color: green; font-weight: bold;'>Total Records: {df.shape[0]}</p>",
+        unsafe_allow_html=True
+    )
+    st.markdown(
+        f"<p style='color: green; font-weight: bold;'>Stroke Cases: {df['stroke'].sum()}</p>",
+        unsafe_allow_html=True
+    )
 
 # ================= HEADER =================
 st.markdown("<h1 style='text-align: center;'>🧠 Stroke Prediction System</h1>", unsafe_allow_html=True)
@@ -98,7 +108,6 @@ smoking_status = smoking_map[smoking_status]
 
 # ================= PREDICTION =================
 if st.button("Predict"):
-    # Model expects: gender, hypertension, heart_disease, avg_glucose, bmi, smoking
     input_data = np.array([[gender, hypertension, heart_disease,
                             avg_glucose_level, bmi, smoking_status]])
     
@@ -112,7 +121,6 @@ if st.button("Predict"):
     else:
         st.markdown("<h2 style='text-align: center; color: green;'>✅ Low Risk of Stroke!</h2>", unsafe_allow_html=True)
 
-    # ================= GRAPH =================
     st.subheader("📊 Your Stats vs Dataset Average")
     stats = pd.DataFrame({
         "Metric": ["BMI", "Average Glucose Level"],
