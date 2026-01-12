@@ -1,16 +1,16 @@
 import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
-from sklearn.metrics import accuracy_score
+from sklearn.metrics import accuracy_score, classification_report
+from imblearn.over_sampling import SMOTE
 import joblib
 
 # Load cleaned data
 df = pd.read_csv("cleaned_stroke_data.csv")
 
-# ---- Select only the features that are used in app.py ----
+# ---- Remove Age feature ----
 feature_cols = [
     "gender",
-    "age",
     "hypertension",
     "heart_disease",
     "avg_glucose_level",
@@ -18,25 +18,38 @@ feature_cols = [
     "smoking_status"
 ]
 
-X = df[feature_cols]          # features
-y = df["stroke"]              # target
+X = df[feature_cols]
+y = df["stroke"]
 
-print("Features used for training:", feature_cols)
-print("X shape:", X.shape)
+print("Features used:", feature_cols)
+print("Class distribution before SMOTE:")
+print(y.value_counts())
+
+# ---- Handle imbalance ----
+smote = SMOTE(random_state=42)
+X_resampled, y_resampled = smote.fit_resample(X, y)
+
+print("Class distribution after SMOTE:")
+print(pd.Series(y_resampled).value_counts())
 
 # Train-test split
 X_train, X_test, y_train, y_test = train_test_split(
-    X, y, test_size=0.2, random_state=42
+    X_resampled, y_resampled, test_size=0.2, random_state=42
 )
 
 # Train model
-model = RandomForestClassifier(n_estimators=100, random_state=42)
+model = RandomForestClassifier(
+    n_estimators=200,
+    random_state=42,
+    class_weight="balanced"
+)
 model.fit(X_train, y_train)
 
 # Evaluate
 y_pred = model.predict(X_test)
 accuracy = accuracy_score(y_test, y_pred)
 print(f"Model Accuracy: {accuracy*100:.2f}%")
+print(classification_report(y_test, y_pred))
 
 # Save model
 joblib.dump(model, "model.pkl")
