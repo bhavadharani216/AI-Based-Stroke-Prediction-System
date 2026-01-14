@@ -25,28 +25,32 @@ This project predicts the risk of stroke using Machine Learning techniques. It u
 ---
 
 ## 📂 Project Structure
-
+```
 AI-Based-Stroke-Prediction-System
 │
-├── app.py                # Streamlit web app interface
-├── model_training.py     # Script to train ML model
-├── model.pkl             # Trained Random Forest model
-├── cleaned_stroke_data.csv # Processed dataset
-├── requirements.txt      # Required libraries
-└── README.md             # Project documentation
+├── app.py
+├── model_training.py
+├── model.pkl
+├── cleaned_stroke_data.csv
+├── requirements.txt
+└── README.md
 
+```
 
 
 ---
 
 ## 📊 Dataset Source
 
-Healthcare-dataset-stroke-data.csv — Kaggle  
+```
+Healthcare-dataset-stroke-data.csv — Kaggle 
 (Structured medical data used for stroke prediction)
 This dataset contains structured medical information used to train the stroke prediction model.
+```
 
 ## Author
-
+```
 Bhavadharani G
 AI & Data Science Student
 Project: AI-Based Stroke Risk Prediction System
+```
