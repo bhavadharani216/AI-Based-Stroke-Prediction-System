@@ -23,6 +23,13 @@ This project predicts the risk of stroke using Machine Learning techniques. It u
 - Joblib
 
 ---
+## Project Preview
+
+<img width="1893" height="709" alt="image" src="https://github.com/user-attachments/assets/d1ecf8c5-b496-4065-a7a1-2959598ee23f" />
+
+<img width="1892" height="847" alt="image" src="https://github.com/user-attachments/assets/5a35ee0a-6f0f-4d6a-b53b-e10e7397c1a9" />
+
+
 
 ## 📂 Project Structure
 ```
