@@ -59,5 +59,5 @@ This dataset contains structured medical information used to train the stroke pr
 ```
 Bhavadharani G
 AI & Data Science Student
-Project: AI-Based Stroke Risk Prediction System
+Project: AI-Based Stroke Prediction System
 ```
