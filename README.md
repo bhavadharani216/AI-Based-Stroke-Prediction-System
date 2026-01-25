@@ -1,8 +1,8 @@
 # 🧠 AI-Based Stroke Prediction System
-```
+ 
 This project predicts the risk of stroke using Machine Learning techniques.
 It uses a Random Forest model trained on real medical data and provides real-time predictions through a Streamlit web application.
-```
+ 
 ---
 
 ## 🚀 Features
